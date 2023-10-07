@@ -1,2 +1,61 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+def add(x, y):
+    return x + y
+
+def subtract(x, y):
+    return x - y
+
+def multiply(x, y):
+    return x * y
+
+def divide(x, y):
+    if y == 0:
+        raise ValueError("На ноль делить нельзя")
+    return x / y
+
+def get_user_input():
+    num1 = float(input("Введите первое число: "))
+    num2 = float(input("Введите второе число: "))
+    return num1, num2
+
+def get_operation():
+    print("Выберите операцию:")
+    print("1. Сложение")
+    print("2. Вычитание")
+    print("3. Умножение")
+    print("4. Деление")
+    choice = input("Введите номер операции: ")
+    return choice
+
+def calculator():
+    while True:
+        try:
+            num1, num2 = get_user_input()
+            operation = get_operation()
+
+            if operation == '1':
+                result = add(num1, num2)
+            elif operation == '2':
+                result = subtract(num1, num2)
+            elif operation == '3':
+                result = multiply(num1, num2)
+            elif operation == '4':
+                result = divide(num1, num2)
+            else:
+                print("Некорректный ввод. Пожалуйста, выберите операцию снова.")
+                continue
+
+            print(f"Результат: {result}")
+
+            again = input("Вы хотите продолжить? (да/нет): ")
+            if again.lower() != 'да':
+                break
+
+        except ValueError as e:
+            print(f"Ошибка: {e}")
+        except Exception as e:
+            print(f"Произошла ошибка: {e}")
+
+if __name__ == "__main__":
+    calculator()
